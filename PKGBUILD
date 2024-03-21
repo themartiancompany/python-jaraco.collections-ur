@@ -4,25 +4,19 @@
 
 pkgname=python-jaraco.collections
 _name="${pkgname#python-}"
-pkgver=3.5.2
-pkgrel=3
+pkgver=5.0.0
+pkgrel=1
 pkgdesc="Models and classes to supplement the stdlib 'collections' module."
 arch=('any')
 url='https://github.com/jaraco/jaraco.collections'
 license=('MIT')
-depends=('python' 'python-jaraco.text' 'python-jaraco.classes')
+depends=('python' 'python-jaraco.text')
 makedepends=('python-build' 'python-installer' 'python-setuptools-scm' 'python-wheel')
-checkdepends=('python-pytest-enabler' 'python-pytest-mypy')
+checkdepends=('python-pytest' 'python-pytest-enabler' 'python-pytest-mypy')
 conflicts=('python-jaraco')
 replaces=('python-jaraco')
 source=("$_name-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha512sums=('f112abd208627d7ea1ced21e2c76d09fd395b9d93019e940b008be3b3712d4add26ff3df6fd42acb87903f05d50051320bc812f0333f0a9ade8a6db029d5f25f')
-
-prepare() {
-  cd $_name-$pkgver
-  # https://github.com/jaraco/jaraco.collections/issues/10
-  echo "explicit_package_bases = True" >> mypy.ini
-}
+sha512sums=('0fc71f4bf993c7591c74b585b9b70ef2ee664794db614f0520be11eb40928812d5e7870316bce55f42f32ad72dfc24c8802050bac51e395548b34e543d6b5a79')
 
 build() {
   cd $_name-$pkgver
@@ -32,8 +26,6 @@ build() {
 check() {
   local pytest_options=(
     -vv
-    --deselect docs/conf.py::mypy-status
-    --deselect jaraco/collections.py::mypy
   )
 
   cd $_name-$pkgver
