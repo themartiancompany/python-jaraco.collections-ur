@@ -69,13 +69,13 @@ makedepends=(
   "${_py}-wheel"
 )
 checkdepends=(
-  'python-pytest'
+  "${_py}-pytest"
 )
 conflicts=(
-  'python-jaraco'
+  "${_py}-jaraco"
 )
 replaces=(
-  'python-jaraco'
+  "${_py}-jaraco"
 )
 source=(
   "${_pkg}-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz"
